@@ -4,8 +4,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI, Type } from '@google/genai';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_FILE = path.join(__dirname, 'reviews.json');
+const _dirname = typeof __dirname !== 'undefined'
+  ? __dirname
+  : path.dirname(fileURLToPath(import.meta.url));
+const DATA_FILE = path.join(_dirname, 'reviews.json');
 
 // Ensure database file exists with initial demo data if empty
 function initializeData() {
@@ -157,7 +159,7 @@ async function startServer() {
   app.use(express.urlencoded({ limit: '60mb', extended: true }));
 
   // Ensure uploads directory exists
-  const uploadsDir = path.join(__dirname, 'uploads');
+  const uploadsDir = path.join(_dirname, 'uploads');
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
   }
@@ -938,7 +940,7 @@ async function startServer() {
     app.use('*', async (req, res, next) => {
       const url = req.originalUrl;
       try {
-        let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
+        let template = fs.readFileSync(path.resolve(_dirname, 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e) {
@@ -948,9 +950,9 @@ async function startServer() {
     });
   } else {
     // In production, serve the compiled build assets
-    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.static(path.join(_dirname, 'dist')));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+      res.sendFile(path.join(_dirname, 'dist', 'index.html'));
     });
   }
 
