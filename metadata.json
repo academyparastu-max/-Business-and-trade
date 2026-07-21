@@ -1,0 +1,6 @@
+{
+  "name": "کار و کاسبی",
+  "description": "سیستم امتیازدهی و نظرسنجی مغازه‌ها با اسکن کد QR",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
