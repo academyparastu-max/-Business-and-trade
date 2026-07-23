@@ -927,7 +927,7 @@ async function startServer() {
     }
   });
 
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = process.env.NODE_ENV === 'production' || _dirname.endsWith('dist') || !fs.existsSync(path.resolve(_dirname, 'src/main.tsx'));
   if (!isProd) {
     // In development, integrate Vite in middleware mode
     const { createServer: createViteServer } = await import('vite');
