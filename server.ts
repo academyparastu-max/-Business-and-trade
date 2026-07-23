@@ -950,9 +950,11 @@ async function startServer() {
     });
   } else {
     // In production, serve the compiled build assets
-    app.use(express.static(path.join(_dirname, 'dist')));
+    // Since this server file is compiled into 'dist/server.cjs', _dirname will be the 'dist' folder in production.
+    const distPath = _dirname.endsWith('dist') ? _dirname : path.join(_dirname, 'dist');
+    app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(_dirname, 'dist', 'index.html'));
+      res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
