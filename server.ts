@@ -118,18 +118,16 @@ initializeData();
 function readReviews() {
   try {
     if (!fs.existsSync(DATA_FILE)) {
-      return { reviews: [], shops: {}, users: [], adminCapacity: 2 };
+      return { reviews: [], shops: {}, users: [], adminCapacity: 1 };
     }
     const content = fs.readFileSync(DATA_FILE, 'utf-8');
     const parsed = JSON.parse(content);
     parsed.users = parsed.users || [];
-    if (parsed.adminCapacity === undefined) {
-      parsed.adminCapacity = 2;
-    }
+    parsed.adminCapacity = 1;
     return parsed;
   } catch (e) {
     console.error('Error reading data file:', e);
-    return { reviews: [], shops: {}, users: [], adminCapacity: 2 };
+    return { reviews: [], shops: {}, users: [], adminCapacity: 1 };
   }
 }
 
@@ -175,7 +173,7 @@ async function startServer() {
     const safeData = {
       shops: data.shops || {},
       reviews: data.reviews || [],
-      adminCapacity: data.adminCapacity || 2,
+      adminCapacity: 1,
       adminCount
     };
     res.json(safeData);
@@ -183,7 +181,7 @@ async function startServer() {
 
   // API: User Signup
   app.post('/api/signup', (req, res) => {
-    const { username, password, fullName, role, phoneNumber, requesterUsername } = req.body;
+    const { username, password, fullName, role, phoneNumber } = req.body;
     if (!username || !password || !fullName) {
       return res.status(400).json({ error: 'تمامی فیلدها (نام کاربری، رمز عبور و نام کامل) الزامی هستند' });
     }
@@ -219,17 +217,7 @@ async function startServer() {
     if (role === 'admin') {
       const adminCount = data.users.filter((u: any) => u.role === 'admin').length;
       if (adminCount >= 1) {
-        // There is already at least one admin. Verify if the signup is performed by the first (Main) Admin.
-        const firstAdmin = data.users.find((u: any) => u.role === 'admin');
-        const reqUserNormalized = (requesterUsername || '').trim().toLowerCase();
-        if (!firstAdmin || firstAdmin.username.toLowerCase() !== reqUserNormalized) {
-          return res.status(403).json({ error: 'خطا: ثبت‌نام ادمین جدید فقط توسط مدیر ارشد (اولین ادمین) مجاز است.' });
-        }
-
-        const limit = data.adminCapacity || 2;
-        if (adminCount >= limit) {
-          return res.status(400).json({ error: `خطا: ظرفیت ثبت‌نام ادمین تکمیل است (حداکثر ${limit} ادمین مجاز است)` });
-        }
+        return res.status(400).json({ error: 'خطا: ظرفیت ادمین‌های سیستم به ۱ نفر (مدیر ارشد) محدود شده است. ثبت‌نام ادمین جدید امکان‌پذیر نیست.' });
       }
     }
 
@@ -561,9 +549,8 @@ async function startServer() {
     }
 
     const adminCount = data.users.filter((u: any) => u.role === 'admin').length;
-    const limit = data.adminCapacity || 1;
-    if (adminCount >= limit) {
-      return res.status(400).json({ error: `خطا: ظرفیت ادمین‌های فعال تکمیل است (حداکثر ${limit} ادمین مجاز است)` });
+    if (adminCount >= 1) {
+      return res.status(400).json({ error: 'خطا: ظرفیت ادمین‌های سیستم به ۱ نفر (مدیر ارشد) محدود شده است و امکان ارتقای کاربر جدید وجود ندارد.' });
     }
 
     user.role = 'admin';

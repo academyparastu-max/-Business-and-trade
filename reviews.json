@@ -1,0 +1,105 @@
+{
+  "shops": {
+    "bahar-market": {
+      "id": "bahar-market",
+      "name": "هایپرمارکت بهار",
+      "address": "تهران، خیابان ولیعصر، نرسیده به میدان ونک",
+      "description": "عرضه بهترین کالاهای اساسی، میوه و سبزیجات تازه با تخفیف‌های روزانه"
+    },
+    "saadat-bakery": {
+      "id": "saadat-bakery",
+      "name": "نانوایی سنتی سعادت",
+      "address": "تهران، شهرک غرب، بلوار پاکنژاد",
+      "description": "انواع نان‌های سنتی سنگک، بربری و تافتون داغ و باکیفیت"
+    },
+    "shiraz-cafe": {
+      "id": "shiraz-cafe",
+      "name": "کافه شیراز",
+      "address": "شیراز، خیابان ارم، روبروی باغ ارم",
+      "description": "فضایی دلنشین همراه با منوی متنوع از قهوه‌های تخصصی، دمنوش و کیک‌های روز"
+    }
+  },
+  "users": [
+    {
+      "username": "reza",
+      "password": "123",
+      "fullName": "رضا کریمی"
+    },
+    {
+      "username": "maryam",
+      "password": "123",
+      "fullName": "مریم حسینی"
+    },
+    {
+      "username": "mohammad",
+      "password": "123",
+      "fullName": "محمد علوی"
+    },
+    {
+      "username": "sara",
+      "password": "123",
+      "fullName": "سارا احمدی"
+    },
+    {
+      "username": "aryorad",
+      "password": "123",
+      "fullName": "آریوراد طیبا طیبا",
+      "role": "customer"
+    },
+    {
+      "username": "ariowork",
+      "password": "ddimguljf",
+      "fullName": "آریوراد طیبا طیبا",
+      "role": "admin",
+      "phoneNumber": "09133121212"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_1783434913154_7z8o",
+      "shopId": "saadat-bakery",
+      "rating": 4,
+      "comment": "سرعت تحویل نان در این مغازه بسیار کم است و یه ربع تا نیم ساعت باید صبر کنی.",
+      "customerName": "آریوراد طیبا طیبا",
+      "username": "aryorad",
+      "createdAt": "2026-07-23T12:15:49.004Z"
+    },
+    {
+      "id": "r1",
+      "shopId": "bahar-market",
+      "rating": 5,
+      "comment": "همیشه خریدهام رو از اینجا انجام میدم. پرسنل بسیار خوش‌برخورد و قیمت‌ها واقعا منصفانه است.",
+      "customerName": "رضا کریمی",
+      "username": "reza",
+      "createdAt": "2026-07-23T11:15:49.005Z"
+    },
+    {
+      "id": "r2",
+      "shopId": "bahar-market",
+      "rating": 4,
+      "comment": "تنوع اجناس عالیه، فقط بعضی اوقات صف صندوق کمی شلوغ میشه.",
+      "customerName": "مریم حسینی",
+      "username": "maryam",
+      "createdAt": "2026-07-23T08:15:49.005Z"
+    },
+    {
+      "id": "r3",
+      "shopId": "saadat-bakery",
+      "rating": 5,
+      "comment": "بهترین سنگک منطقه رو پخت میکنن. کنجد دورو با کیفیت عالی و کاملا مغزپخت.",
+      "customerName": "محمد علوی",
+      "username": "mohammad",
+      "createdAt": "2026-07-23T01:15:49.005Z"
+    },
+    {
+      "id": "r4",
+      "shopId": "shiraz-cafe",
+      "rating": 5,
+      "comment": "قهوه لاته فوق‌العاده با آرت زیبا و پرسنل صمیمی. فضای بسیار آرامش‌بخشی دارند.",
+      "customerName": "سارا احمدی",
+      "username": "sara",
+      "createdAt": "2026-07-22T13:15:49.005Z"
+    }
+  ],
+  "adminCapacity": 1
+}

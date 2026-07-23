@@ -3611,10 +3611,10 @@ export default function App() {
                           <h3 className="text-2xl font-black text-slate-900 leading-none">
                             {adminLoadingUsers ? '...' : adminUsers.filter(u => u.role === 'admin').length}
                           </h3>
-                          <span className="text-xs text-slate-400 font-bold">/ ۲ حداکثر</span>
+                          <span className="text-xs text-slate-400 font-bold">/ ۱ حداکثر</span>
                         </div>
                         <p className="text-[9px] text-purple-600 mt-1 font-black">
-                          {adminLoadingUsers ? 'درحال محاسبه...' : `ظرفیت باقیمانده: ${Math.max(0, 2 - adminUsers.filter(u => u.role === 'admin').length)} ادمین`}
+                          {adminLoadingUsers ? 'درحال محاسبه...' : 'محدود به ۱ مدیر ارشد'}
                         </p>
                       </div>
                     </div>
